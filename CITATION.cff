@@ -6,6 +6,8 @@ authors:
   - family-names: Shibu
     given-names: Novain
 license: AGPL-3.0-or-later
+doi: 10.5281/zenodo.23471690
 repository-code: https://github.com/novain-shibu/seenread
 version: "0.1.0"
+date-released: 2026-10-19
 keywords: [PDF, prompt injection, hidden text, font remapping, ToUnicode, text extraction, document AI, LLM security, HarfBuzz, Indic scripts]

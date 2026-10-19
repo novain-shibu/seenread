@@ -1,5 +1,7 @@
 # SeenRead
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23471690.svg)](https://doi.org/10.5281/zenodo.23471690)
+
 **Prove, word by word and without OCR, whether the text a machine extracts from a PDF is the text a human sees.**
 
 PDFs can show people one text while giving machines another: a font whose character table says "9" where it draws "1",
