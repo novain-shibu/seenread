@@ -1,0 +1,15 @@
+SeenRead - Copyright (c) 2026 Novain Shibu.
+
+SeenRead is licensed under the GNU Affero General Public License v3.0 or later (see LICENSE), or under a commercial
+licence from the author (see COMMERCIAL.md).
+
+Included data: bench/text/*.txt contain text from Wikipedia (CC BY-SA 4.0, Wikipedia contributors; Hugging Face dataset
+wikimedia/wikipedia 20231101). bench/results/ contain answer keys and scores built from that text (CC BY-SA 4.0).
+
+Not included: no fonts and no PDFs are distributed. Trusted reference fonts are supplied by the user (for example
+Lohit or Noto, SIL OFL 1.1, or fonts installed on the user's own system under their own licences).
+
+Dependencies (installed separately): Unshape (AGPL-3.0 or commercial, same author), HarfBuzz / uharfbuzz (MIT /
+Apache-2.0), fontTools (MIT), PyMuPDF (AGPL-3.0 or commercial licence from Artifex).
+
+Parts of this work were produced with AI assistance (Claude, Anthropic), directed and reviewed by the author.

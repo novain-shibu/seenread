@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "SeenRead: proving that the text a machine extracts from a PDF is the text a human sees, without OCR"
+type: software
+authors:
+  - family-names: Shibu
+    given-names: Novain
+license: AGPL-3.0-or-later
+repository-code: https://github.com/novain-shibu/seenread
+version: "0.1.0"
+keywords: [PDF, prompt injection, hidden text, font remapping, ToUnicode, text extraction, document AI, LLM security, HarfBuzz, Indic scripts]

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "seenread"
+version = "0.1.0"
+description = "Prove, word by word and without OCR, whether the text a machine extracts from a PDF is the text a human sees"
+readme = "README.md"
+license = {text = "AGPL-3.0-or-later OR LicenseRef-Commercial"}
+authors = [{name = "Novain Shibu", email = "georgeshibu380@gmail.com"}]
+requires-python = ">=3.10"
+dependencies = ["pymupdf", "fonttools", "uharfbuzz", "unshape @ git+https://github.com/novain-shibu/unshape@v0.2.1"]
+
+[project.scripts]
+seenread = "seenread.__main__:main"
+
+[tool.setuptools]
+packages = ["seenread"]
