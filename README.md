@@ -49,10 +49,14 @@ alarms; an OCR comparison misses words where OCR "corrects" a swapped letter bac
 false alarms where OCR misreads.
 
 ## Limits (read before relying on it)
-- **Synthetic documents only so far** (made with PyMuPDF's writers). Real-world PDFs from other producers, mixed
-  layouts and unknown fonts are not tested yet.
+- **Tested on synthetic documents** (made with PyMuPDF's writers). Real-world PDFs from other producers, mixed
+  layouts and unknown fonts: only a first, partial check so far (next point).
 - **Needs the trusted font.** A glyph that matches no trusted font gives `UNKNOWN` (never a guess). An attacker who
-  draws new glyph shapes gets `UNKNOWN`, not `SAME`.
+  draws new glyph shapes gets `UNKNOWN`, not `SAME`. **But text in an embedded font that matches no trusted font at
+  all (under half its glyphs) is currently left out of the report, not counted as `UNKNOWN`** - compare the word counts
+  with plain extraction. In a first, partial real-world check (27 genuine web PDFs, mostly Indian-language; Windows
+  system fonts as trusted fonts), the report covered about 42% of the words plain extraction finds, and about half of
+  those were `UNKNOWN`. One PDF with a malformed font table stopped the run with an error. Both are being fixed.
 - Not handled yet: coloured backgrounds (white text is assumed invisible on a white page), clipping, objects covering
   text, Type 1 / CFF fonts (e.g. many LaTeX PDFs).
 - Speed: seconds per page; lookup tables are built once per font and script.
