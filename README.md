@@ -64,7 +64,7 @@ false alarms where OCR misreads.
 
 ## Use
 ```
-pip install git+https://github.com/novain-shibu/seenread
+pip install seenread
 seenread file.pdf --trusted Arial.ttf Lohit-Devanagari.ttf          # human-readable report
 seenread file.pdf --trusted ... --json                               # per-word verdicts, visible text, hidden text
 ```
@@ -83,8 +83,8 @@ Reproduce the benchmark: `bench/generator.py` (set `SR_SEED`, font paths via `SR
 
 ## Licence and commercial use
 **AGPL-3.0-or-later**, or a **commercial licence** for closed-source products, internal pipelines and hosted services -
-see [COMMERCIAL.md](COMMERCIAL.md). **Open for talks** about commercial licences, integration into document-AI, RAG and
+see [COMMERCIAL.md](https://github.com/novain-shibu/seenread/blob/main/COMMERCIAL.md). **Open for talks** about commercial licences, integration into document-AI, RAG and
 LLM-ingestion pipelines, security reviews and partnerships: **Novain Shibu** · georgeshibu380@gmail.com ·
 [github.com/novain-shibu](https://github.com/novain-shibu) · [linkedin.com/in/novain-shibu](https://www.linkedin.com/in/novain-shibu).
 `bench/text/` and `bench/results/` contain Wikipedia text (CC BY-SA 4.0). Parts of this work were produced with AI
-assistance (Claude, Anthropic), directed and reviewed by the author. Cite via [CITATION.cff](CITATION.cff).
+assistance (Claude, Anthropic), directed and reviewed by the author. Cite via [CITATION.cff](https://github.com/novain-shibu/seenread/blob/main/CITATION.cff).

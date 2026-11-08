@@ -1,0 +1,65 @@
+# Build, test end-to-end and publish seenread to PyPI.
+# Runs only when started by hand (Actions tab -> "Publish to PyPI" -> Run workflow).
+# Uses PyPI Trusted Publishing: no password or API token is stored anywhere.
+name: Publish to PyPI
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install build==1.6.1
+          python -m build
+      - name: End-to-end test of the wheel in a clean environment
+        run: |
+          python -m venv /tmp/t
+          /tmp/t/bin/pip install dist/*.whl
+          cd /tmp
+          /tmp/t/bin/python -c "import seenread; print('seenread', seenread.__version__)"
+          /tmp/t/bin/seenread --help > /dev/null
+          FONT=$(fc-match -f '%{file}' 'DejaVu Sans')
+          echo "font: $FONT"
+          /tmp/t/bin/python - "$FONT" <<'PY'
+          import sys, pymupdf
+          doc = pymupdf.open(); page = doc.new_page()
+          page.insert_font(fontname="dv", fontfile=sys.argv[1])
+          page.insert_text((72, 100), "The quick brown fox jumps over the lazy dog", fontname="dv", fontsize=14)
+          doc.save("/tmp/e2e.pdf")
+          PY
+          /tmp/t/bin/seenread /tmp/e2e.pdf --trusted "$FONT" --json > /tmp/e2e.json
+          /tmp/t/bin/python - <<'PY'
+          import json
+          r = json.load(open("/tmp/e2e.json"))
+          print("words:", r["words"])
+          assert r["words"].get("SAME", 0) >= 9, r["words"]
+          assert not r["different"] and not r["unknown"], r
+          print("end-to-end OK")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1

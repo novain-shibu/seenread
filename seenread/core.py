@@ -8,7 +8,7 @@ extracts, and the decoder's reconstructions from the glyphs in file order and in
   SAME      - the machine's text is render-equivalent to the drawing
   DIFFERENT - the machine's text is not; another text is render-equivalent (given as human_sees)
   UNKNOWN   - nothing proven (unmatched glyphs, or no candidate lays out identically)
-usage: seenread2.py file.pdf --trusted font1 [font2 ...] [--json]
+usage: seenread file.pdf --trusted font1 [font2 ...] [--json]
 """
 import collections, io, json, sys, unicodedata
 _a = sys.argv[1:]
@@ -409,6 +409,8 @@ def verify(pdf, trusted, keep=200):
 
 
 if __name__ == "__main__":
+    if not _a or _a[0] in ("-h", "--help") or "--trusted" not in _a:
+        print(__doc__); sys.exit(0)
     i = _a.index("--trusted"); pdf = _a[0]; as_json = "--json" in _a
     r = verify(pdf, trusted_index([x for x in _a[i + 1:] if x != "--json"]))
     if as_json:

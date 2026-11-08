@@ -7,6 +7,8 @@ SeenRead is dual-licensed by its author, **Novain Shibu**:
    you must make your complete corresponding source code available under the AGPL).
 2. **Commercial licence** - for organisations that want to use SeenRead in closed-source products, internal pipelines or
    hosted services **without** the AGPL's obligations.
+   SeenRead uses PyMuPDF, which is itself licensed under AGPL or a commercial licence from Artifex; closed-source use also
+   needs a PyMuPDF licence from Artifex (or replacing PyMuPDF).
 
 ## Open for talks
 I am open to discussing:
